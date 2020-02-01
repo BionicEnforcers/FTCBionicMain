@@ -87,8 +87,9 @@ public void runOpMode() {
                 StrafLeftDistance(1,8);
                 //Drives Forward and picks up SkyStone
                 DriveForwardDistance(1,17);
+                sleep(1000);
                 robot.Leftglock.setPosition(.4);
-                sleep(500);
+
 
                 //Drives Backward with the SkyStone
                 DriveBackwardDistance(1,11);
@@ -115,7 +116,7 @@ public void runOpMode() {
                 DriveForwardDistance(.3,5);
                 //Drops the latch attachment to get the Skystone
                 robot.Leftglock.setPosition(.4);
-                sleep(1000);
+                sleep(1500);
                 //After getting the Skystone the Robot delivers is to the building zone
                 //Starts by driving backwards with the SkyStone
                 DriveBackwardDistance(1,11);
@@ -160,16 +161,16 @@ public void runOpMode() {
         {
             //This is SkyStone Location number 1 (SkyStone Stone Stone)
             //After scanning the 1st Location the color sensors says it isn't a regular stone so it is SkyStone
-            StrafRightDistance(1,6);
+            StrafRightDistance(1,3);
             DriveForwardDistance(.3,5);
             //Drops the latch attachment to get the Skystone
             robot.Leftglock.setPosition(.4);
-            sleep(3000);
+            sleep(2000);
             //After getting the Skystone the Robot delivers is to the building zone
             //Starts by driving backwards with the SkyStone
             DriveBackwardDistance(1,12);
             //Turns Left to Face the Building Zone
-            TurnRightDistance(1,21);
+            TurnRightDistance(1,22);
             //Drives Forward to deliver Skystone into the building zone
             DriveForwardDistance(1,36);
             //Releases the SkyStone by bringing latch back up

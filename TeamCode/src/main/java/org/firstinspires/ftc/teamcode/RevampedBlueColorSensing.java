@@ -63,7 +63,7 @@ public void runOpMode() {
                 //Since the next object is also a Stone the robot strafes to the next object
                 DriveBackwardDistance(1,5);
                 sleep(1000);
-                StrafLeftDistance(1,8);
+                StrafLeftDistance(1,6);
                 DriveForwardDistance(1,5);
                 //After the first two scanned objects are Stones the robot gets the third one because it is a SkyStone
                 DriveForwardDistance(1,5);
@@ -86,11 +86,11 @@ public void runOpMode() {
                 //Strafes a little bit to be fully aligned with the SkyStone
                 StrafLeftDistance(1,7);
                 //Drives Forward and picks up SkyStone
-                DriveForwardDistance(1,10);
+                DriveForwardDistance(1,13);
                 robot.Rightglock.setPosition(.2);
-                sleep(500);
+                sleep(1000);
                 //Drives Backward with the SkyStone
-                DriveBackwardDistance(1,7);
+                DriveBackwardDistance(1,10);
                 //Strafes a little with the SkyStone to prevent hitting the wall on the turn
                 StrafRightDistance(1,8);
                 //Turns Left to face the robot towards the building zone
@@ -129,17 +129,17 @@ public void runOpMode() {
                 //Turns Right so that the robot can face the SkyStone
                 TurnRightDistance(1,22);
                 //Strafes a little bit to be fully aligned with the SkyStone
-                StrafLeftDistance(.3,8);
+                StrafLeftDistance(.3,4);
                 //Drives Forward and picks up SkyStone
                 DriveForwardDistance(1,12);
-                sleep(500);
                 robot.Rightglock.setPosition(.2);
+                sleep(1000);
                 //Drives Backward with the SkyStone
                 DriveBackwardDistance(1,9);
                 //Strafes Left to give robot space from wall
                 StrafRightDistance(1,5);
                 //Turns Left to face the robot towards the building zone
-                TurnLeftDistance(1,22);
+                TurnLeftDistance(1,23);
                 //Drive Forward to deliver the SkyStone to the building zone
                 DriveForwardDistance(1,67);
                 //Releases the SkyStone by bringing the Latch up
@@ -182,8 +182,8 @@ public void runOpMode() {
             StrafLeftDistance(1,4);
             //Drives Forward and picks up SkyStone
             DriveForwardDistance(1,10);
-            sleep(500);
             robot.Rightglock.setPosition(.2);
+            sleep(1000);
             //Drives Backward with the SkyStone
             DriveBackwardDistance(1,10);
             //Turns Left to face the robot towards the building zone
