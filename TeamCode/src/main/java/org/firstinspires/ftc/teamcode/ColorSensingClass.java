@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 
 @Autonomous (name="TestColorSensing", group="BionicBot")
+@Disabled
 public class ColorSensingClass extends LinearOpMode {
 
 HardwareBionicbot         robot   = new HardwareBionicbot();   // Use a Pushbot's hardware

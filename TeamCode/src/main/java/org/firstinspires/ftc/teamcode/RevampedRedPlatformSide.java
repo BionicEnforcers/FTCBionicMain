@@ -51,20 +51,31 @@ public void runOpMode()
 
     waitForStart();
 
+    DriveForwardDistance(1,28);
     sleep(500);
-    StrafRightDistance(.5,5);
+    StrafLeftDistance(1,9);
     sleep(1000);
-    DriveForwardDistance(1,25);
-    robot.Rightglock.setPosition(.3);
+    robot.Rightglock.setPosition(0);
+    sleep(1200);
+    DriveForward(.5);
+    sleep(1300);
+    StopDriving();
     sleep(1000);
-    TwoLeft(1,35);
+    robot.Rightglock.setPosition(.6);
+    sleep(500);
+    StrafRightDistance(1,30);
+    DriveForwardDistance(.8,42);
+    StrafLeftDistance(1,30);
     sleep(1000);
-    robot.Rightglock.setPosition(.7);
-    sleep(1000);
-    StrafRightDistance(1,5);
-    DriveForwardDistance(1,20);
-    StrafLeftDistance(.5,25);
-    DriveBackwardDistance(1,30);
+    DriveForward(.8);
+    sleep(1700);
+    StrafRightDistance(1,50);
+    robot.leftDrive.setPower(0);
+    robot.rightDrive.setPower(0);
+    robot.leftBack.setPower(0);
+    robot.rightBack.setPower(0);
+
+
 
 
 

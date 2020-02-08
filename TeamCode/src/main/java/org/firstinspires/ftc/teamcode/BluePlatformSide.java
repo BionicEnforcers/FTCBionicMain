@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name="Of Blue Platform Side", group="BionicBot")
+@Autonomous(name="Blue Platform Side", group="BionicBot")
 @Disabled
 public class BluePlatformSide extends LinearOpMode
 {
@@ -57,13 +57,13 @@ public void runOpMode()
     sleep(500);
     StrafLeftDistance(.3,15);
     sleep(1000);
-    robot.Leftglock.setPosition(0);
+    robot.Rightglock.setPosition(.2);
     sleep(1200);
     DriveBackward(.5);
     sleep(1300);
     StopDriving();
     sleep(1000);
-    robot.Leftglock.setPosition(.4);
+    robot.Rightglock.setPosition(.6);
     sleep(500);
     StrafRightDistance(.4,35);
     sleep(1000);

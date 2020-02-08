@@ -1,15 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.HardwareBionicbot;
 
-@Autonomous(name="TestAutonomous", group="BionicBot")
-public class TestAutomonous extends LinearOpMode
-{
-    HardwareBionicbot         robot   = new HardwareBionicbot();   // Use a Pushbot's hardware
+@Autonomous(name="RedStoneSide", group="BionicBot")
+public class Movement extends LinearOpMode {
+
+    HardwareBionicbot robot   = new HardwareBionicbot();   // Use a Pushbot's hardware
     private ElapsedTime runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: TETRIX Motor Encoder
@@ -17,41 +19,10 @@ public class TestAutomonous extends LinearOpMode
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     CIRCUMFERENCE           = WHEEL_DIAMETER_INCHES * Math.PI;
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
-                                                    (CIRCUMFERENCE);
+            (CIRCUMFERENCE);
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
-@Override
-    public void runOpMode()
-    {
-        robot.init(hardwareMap);
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
-
-       /* robot.leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);*/
-
-        robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        telemetry.addData("Path0",  "Starting at %7d :%7d",
-                robot.leftDrive.getCurrentPosition(),
-                robot.rightDrive.getCurrentPosition(),
-                robot.leftBack.getCurrentPosition(),
-                robot.rightBack.getCurrentPosition());
-        telemetry.update();
-
-        waitForStart();
-
-
-        StrafRightDistance(1,15);
-
-    }
     public void DriveForwardDistance(double speed, double distanceInches)
     {
         double rotationsneeded = distanceInches/CIRCUMFERENCE;
@@ -62,22 +33,22 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() + distanceTick);
-        robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() + distanceTick);
-        robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() + distanceTick);
-        robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() + distanceTick);
+        robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() - distanceTick);
+        robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() - distanceTick);
+        robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() - distanceTick);
+        robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() - distanceTick);
 
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    DriveForward(speed);
+        DriveForward(-speed);
 
-    while(robot.leftDrive.isBusy() && robot.rightDrive.isBusy() && robot.leftBack.isBusy() && robot.rightBack.isBusy() )
-    {
+        while(robot.leftDrive.isBusy() && robot.rightDrive.isBusy() && robot.leftBack.isBusy() && robot.rightBack.isBusy() )
+        {
 
-    }
+        }
         StopDriving();
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -93,16 +64,16 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() - distanceTick);
-        robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() - distanceTick);
-        robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() - distanceTick);
-        robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() - distanceTick);
+        robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() + distanceTick);
+        robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() + distanceTick);
+        robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() + distanceTick);
+        robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() + distanceTick);
 
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        DriveBackward(speed);
+        DriveBackward(-speed);
 
         while(robot.leftDrive.isBusy() && robot.rightDrive.isBusy() && robot.leftBack.isBusy() && robot.rightBack.isBusy() )
         {
@@ -114,7 +85,7 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void TurnLeftDistance(double speed, int distanceInches)
+    public void TurnLeftDistance(double speed, double distanceInches)
     {
         double rotationsneeded = distanceInches/CIRCUMFERENCE;
         int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);
@@ -178,7 +149,7 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void StrafLeftDistance(double speed, int distanceInches)
+    public void StrafRightDistance(double speed, int distanceInches)
     {
         double rotationsneeded = distanceInches/CIRCUMFERENCE;
         int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);
@@ -214,45 +185,38 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void StrafRightDistance(double speed, int distanceInches)
+    public void StrafLeftDistance(double speed, int distanceInches)
     {
-    double rotationsneeded = distanceInches/CIRCUMFERENCE;
-    int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);
+        double rotationsneeded = distanceInches/CIRCUMFERENCE;
+        int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);
 
-    robot.leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    robot.rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() + distanceTick);
+        robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() + distanceTick);
+        robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() - distanceTick);
+        robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() - distanceTick);
 
+        robot.rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    robot.rightBack.setTargetPosition(robot.rightBack.getCurrentPosition() + distanceTick);
-    robot.leftDrive.setTargetPosition(robot.leftDrive.getCurrentPosition() + distanceTick);
-    robot.rightDrive.setTargetPosition(robot.rightDrive.getCurrentPosition() - distanceTick);
-    robot.leftBack.setTargetPosition(robot.leftBack.getCurrentPosition() - distanceTick);
-
-
-
-    robot.rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    robot.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    robot.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    robot.leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        StrafRight(speed);
 
 
+        while(robot.leftDrive.isBusy() && robot.rightBack.isBusy() && robot.leftBack.isBusy() && robot.rightDrive.isBusy())
+        {
 
-
-     StrafRight(speed);
-
-
-    while(robot.leftDrive.isBusy() && robot.rightBack.isBusy() && robot.leftBack.isBusy() && robot.rightDrive.isBusy())
-    {
-
-    }
-    StopDriving();
-    robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+        StopDriving();
+        robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
     public void DriveForward(double power)
     {
@@ -304,5 +268,9 @@ public class TestAutomonous extends LinearOpMode
         robot.leftBack.setPower(0);
         robot.rightBack.setPower(0);
     }
-}
 
+    @Override
+    public void runOpMode() throws InterruptedException {
+
+    }
+}

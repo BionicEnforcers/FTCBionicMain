@@ -53,6 +53,7 @@ import java.util.List;
  * is explained below.
  */
 @Autonomous(name = "Concept: TensorFlow Object Detection", group = "Concept")
+@Disabled
 
 public class TesterScan extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";

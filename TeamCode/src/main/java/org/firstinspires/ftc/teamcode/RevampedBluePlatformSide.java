@@ -51,23 +51,30 @@ public class RevampedBluePlatformSide extends LinearOpMode
 
         waitForStart();
 
+        DriveForwardDistance(1,28);
+        sleep(500);
+        StrafRightDistance(1,15);
         sleep(1000);
-        StrafLeftDistance(.5,29);
+        robot.Rightglock.setPosition(0);
+        sleep(1200);
+        DriveForward(.5);
+        sleep(1300);
+        StopDriving();
         sleep(1000);
-        DriveForwardDistance(1,25);
-        sleep(2000);
-        robot.Rightglock.setPosition(.1);
-        sleep(2000);
-        robot.rightDrive.setPower(1);
-        robot.rightBack.setPower(1);
-        robot.Rightglock.setPosition(.1);
-        sleep(900);
+        robot.Rightglock.setPosition(.6);
+        sleep(500);
+        StrafLeftDistance(1,30);
+        DriveForwardDistance(.8,42);
+        StrafRightDistance(1,30);
         sleep(1000);
-        robot.Rightglock.setPosition(.7);
-        StrafRightDistance(1,5);
-        DriveForwardDistance(1,20);
-        StrafLeftDistance(.5,25);
-        DriveBackwardDistance(1,30);
+        DriveForward(.8);
+        sleep(1700);
+        StrafLeftDistance(1,50);
+        robot.leftDrive.setPower(0);
+        robot.rightDrive.setPower(0);
+        robot.leftBack.setPower(0);
+        robot.rightBack.setPower(0);
+
 
 
 
@@ -209,7 +216,7 @@ public class RevampedBluePlatformSide extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void StrafRightDistance(double speed, int distanceInches)
+    public void StrafLeftDistance(double speed, int distanceInches)
     {
         double rotationsneeded = distanceInches/CIRCUMFERENCE;
         int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);
@@ -245,7 +252,7 @@ public class RevampedBluePlatformSide extends LinearOpMode
         robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void StrafLeftDistance(double speed, int distanceInches)
+    public void StrafRightDistance(double speed, int distanceInches)
     {
         double rotationsneeded = distanceInches/CIRCUMFERENCE;
         int distanceTick = (int)(rotationsneeded*COUNTS_PER_MOTOR_REV);

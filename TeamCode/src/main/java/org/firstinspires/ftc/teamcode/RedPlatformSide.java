@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous(name="Of Red Platform Side", group="BionicBot")
-@Disabled
+
 public class RedPlatformSide extends LinearOpMode
 {
 HardwareBionicbot         robot   = new HardwareBionicbot();   // Use a Pushbot's hardware

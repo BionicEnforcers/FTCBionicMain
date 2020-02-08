@@ -62,29 +62,6 @@ public void runOpMode() {
             robot.lifter1.setPower(-.05);
             robot.lifter.setPower(-.05);
         }
-//        if(gamepad2.a)
-//        {
-//            robot.lifter1.setPower(.5);
-//        }
-//        else if(gamepad2.b) {
-//            robot.lifter1.setPower(-.5);
-//        }
-//        else
-//        {
-//            robot.lifter1.setPower(0);
-//        }
-//        if(gamepad2.right_bumper)
-//        {
-//            robot.lifter.setPower(.5);
-//        }
-//        else if(gamepad2.left_bumper)
-//        {
-//            robot.lifter.setPower(-.5);
-//        }
-//        else
-//        {
-//            robot.lifter.setPower(0);
-//        }
         if (gamepad1.dpad_left) {
             robot.leftDrive.setPower(-.5);
             robot.rightDrive.setPower(.5);
